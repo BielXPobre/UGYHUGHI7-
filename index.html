@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<head>
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+    <style>
+        body {
+            display: flex;
+            user-select: none;
+        }
+
+        .main-box {
+            font-size: 20px;
+            padding: 25px;
+            color: rgb(255, 0, 0);
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgb(20, 20, 20);
+            height: 400px;/*y position*/
+            width: 550px;/*x position*/
+            border: 2px solidaliceblue;
+            border-radius: 7px;
+        }
+        .main-box-Contorno {
+            font-size: 20px;
+            padding: 25px;
+            color: rgb(255, 0, 0);
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgb(60, 60, 60);
+            height: 404px;/*y position*/
+            width: 553px;/*x position*/
+            border: 2px solidaliceblue;
+            border-radius: 7px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="main-box-Contorno">
+    </div>
+    <div class="main-box">
+    </div>
+</body>
+<script>
+    $(() => {
+
+        $("body").hide()
+        window.addEventListener("message", function(event){
+            if (event.data.teste != undefined) {
+                let status = event.data.teste
+                if (status) {
+                    $("body").show()
+                } else {
+                    $("body").hide()
+                }
+            }
+        })
+
+        $(".botao").click(function(){
+            $.post("http://script_teste/botao", JSON.stringify({ teste: "dados" }))
+        })
+    })
+</script>
+</html>
